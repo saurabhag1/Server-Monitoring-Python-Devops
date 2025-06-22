@@ -6,7 +6,37 @@
 </head>
 <body>
     <h1>Server Health Dashboard</h1>
-    <canvas id="cpuChart"></canvas>
-    <script src="/static/js/charts.js"></script>
+
+    <p><strong>CPU Usage:</strong> {{ cpu }}%</p>
+    <p><strong>Memory Usage:</strong> {{ memory }}%</p>
+    <p><strong>Disk Usage:</strong> {{ disk }}%</p>
+    <p><strong>OS:</strong> {{ os_info }}</p>
+    <p><strong>Uptime (seconds):</strong> {{ uptime }}</p>
+
+    <canvas id="cpuChart" width="400" height="200"></canvas>
+
+    <script>
+        const cpuUsage = {{ cpu }};
+        const ctx = document.getElementById('cpuChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['CPU'],
+                datasets: [{
+                    label: 'CPU Usage (%)',
+                    data: [cpuUsage],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
