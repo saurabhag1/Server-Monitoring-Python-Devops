@@ -2,6 +2,6 @@ remote_servers = [
     {
         "host": "3.110.196.91",
         "user": "ubuntu",
-        "key": "/path/to/your/private-key.pem"
+        "key": "/home/ec2-user/.ssh/my-key.pem"
     }
 ]
